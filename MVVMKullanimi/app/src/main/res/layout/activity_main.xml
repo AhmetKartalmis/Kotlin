@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="nesne"
+            type="com.ahmetkartal.mvvmkullanimi.MainActivity" />
+        <variable
+            name="sonuc"
+            type="String" />
+        <import type="android.view.View"></import>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/tvSonuc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@{sonuc}"
+            android:visibility="@{Integer.parseInt(sonuc)==0?View.INVISIBLE:View.VISIBLE}"
+            android:textColor="@{Integer.parseInt(sonuc)> 200 ? @color/kirmizi : @color/mavi}"
+            android:textSize="@{Integer.parseInt(sonuc)> 200 ? @dimen/boyut2 : @dimen/boyut1}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/eText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:ems="10"
+            android:hint="Sayı 1:"
+            android:inputType="text"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvSonuc" />
+
+        <EditText
+            android:id="@+id/eText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:ems="10"
+            android:hint="Sayı 2:"
+            android:inputType="text"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/eText1" />
+
+        <Button
+            android:id="@+id/buttonTopla"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="TOPLA"
+            android:onClick="@{() -> nesne.toplama(eText1.getText().toString(),eText2.getText().toString())}"
+            app:layout_constraintEnd_toStartOf="@+id/buttonCarp"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/eText2" />
+
+        <Button
+            android:id="@+id/buttonCarp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="ÇARP"
+            android:onClick="@{() -> nesne.carpma(eText1.getText().toString(),eText2.getText().toString())}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonTopla"
+            app:layout_constraintTop_toBottomOf="@+id/eText2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
